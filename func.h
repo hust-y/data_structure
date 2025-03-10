@@ -28,7 +28,7 @@ DELIST *initDEList();
 void insertDE(DELIST *l, int element);
 //insert at the head of the list
 
-void deleteDE(DELIST *l, int index);
+int deleteDE(DELIST *l, int index);
 //delete the element at the given index
 
 int isEmptyDE(DELIST *l);
