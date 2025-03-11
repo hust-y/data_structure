@@ -23,16 +23,8 @@ void insert(LIST *l, int element)
         printf("Memory allocation failed\n");
         exit(1);
     }
-    if (l->next == NULL)
-    {
-        l->next = newNode;
-    }
     newNode->element = element;
     newNode->next = l->next;
-    if (newNode->next == NULL)
-    {
-        newNode->next = l->next;
-    }
     l->next = newNode;
     l->element++;
 }

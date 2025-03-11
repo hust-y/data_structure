@@ -3,37 +3,37 @@
 #include <time.h>
 #include "func.h"
 
-#define N 1000
-#define M 500
-#define T 100
+#define N 300
+#define M 500000
+#define T 10000
 
-int *solution_with_list(int n, int m);
+void solution_with_list(int n, int m , int *arr);
 
-int *solution_with_delist(int n, int m);
+void solution_with_delist(int n, int m , int *arr);
 
-int *solution_with_sequence(int n, int m);
+void solution_with_sequence(int n, int m , int *arr);
 
-int *solution_with_DEsequence(int n, int m);
+void solution_with_DEsequence(int n, int m , int *arr);
 
 int main()
 {
     srand(time(NULL));
-    int n, m, t = 1;
+    int n, m, t = 100;
     int *ans1 = (int *)malloc(n * sizeof(int));
     int *ans2 = (int *)malloc(n * sizeof(int));
     int *ans3 = (int *)malloc(n * sizeof(int));
     int *ans4 = (int *)malloc(n * sizeof(int));
     while (t--)
     {
-        n = 10, m = 5;
-        ans1 = solution_with_list(n, m);
-        ans2 = solution_with_delist(n, m);
-        ans3 = solution_with_sequence(n, m);
-        ans4 = solution_with_DEsequence(n, m);
+        n = N, m = rand() % M + 1;
+        solution_with_list(n, m , ans1);
+        solution_with_delist(n, m , ans2);
+        solution_with_sequence(n, m , ans3);
+        solution_with_DEsequence(n, m , ans4);
         for (int i = 0; i < n; i++)
         {
-            printf("%d %d %d %d\n", ans1[i], ans2[i], ans3[i],ans4[i]);
-            if (ans1[i] != ans2[i])
+            // printf("%d %d %d %d\n", ans1[i], ans2[i], ans3[i],ans4[i]);
+            if (ans1[i] != ans2[i] || ans1[i] != ans3[i] || ans1[i] != ans4[i])
             {
                 printf("Error!\n");
                 return 0;
@@ -42,32 +42,62 @@ int main()
     }
     
     printf("It is OK!\n");
+    
     // check the correctness of the solution
 
     float begin, end;
+
     t = T;
     begin = clock();
     while (t--)
     {
-        int n = N, m = rand() % M + 1;
-        solution_with_list(n, m);
+        int n = N, m = rand() % M - M /2;
+        solution_with_list(n, m , ans1);
     }
     end = clock();
-    t = T;
     printf("Time taken by solution_with_list() is %f seconds\n", (end - begin) / CLOCKS_PER_SEC);
+    //
+
+    t = T;
     begin = clock();
     while (t--)
     {
-        int n = N, m = rand() % M + 1;
-        solution_with_delist(n, m);
+        int n = N, m = rand() % M - M /2;
+        solution_with_delist(n, m,ans2);
     }
     end = clock();
     printf("Time taken by solution_with_delist() is %f seconds\n", (end - begin) / CLOCKS_PER_SEC);
+
+    t = T;
+    begin = clock();
+    while (t--)
+    {
+        int n = N, m = rand() % M - M /2;
+        solution_with_sequence(n, m , ans3);
+    }
+    end = clock();
+    printf("Time taken by solution_with_sequence() is %f seconds\n", (end - begin) / CLOCKS_PER_SEC);
+
+    t = T;
+    begin = clock();
+    while (t--)
+    {
+        int n = N, m = rand() % M - M /2;
+        solution_with_DEsequence(n, m , ans4);
+    }
+    end = clock();
+    printf("Time taken by solution_with_DEsequence() is %f seconds\n", (end - begin) / CLOCKS_PER_SEC);
+    
+    free(ans1);
+    free(ans2);
+    free(ans3);
+    free(ans4);
+    return 0;
+
 }
 
-int *solution_with_list(int n, int m)
+void solution_with_list(int n, int m , int *arr)
 {
-    int *arr = (int *)malloc(n * sizeof(int));
     LIST *l = initList();
     int i, x = 0;
     for (i = n; i >= 1; i--)
@@ -78,16 +108,16 @@ int *solution_with_list(int n, int m)
     {
         x += m - 1;
         x %= n - i;
+        if(x < 0)x += n - i;
         m = deleteList(l, x);
-
         *(arr + i) = m;
+        // printf("%d ", m);
     }
-    return arr;
+    free(l);
 }
 
-int *solution_with_delist(int n, int m)
+void solution_with_delist(int n, int m , int *arr)
 {
-    int *arr = (int *)malloc(n * sizeof(int));
     DELIST *l = initDEList();
     int i, x;
     for (i = n; i >= 1; i--)
@@ -106,12 +136,11 @@ int *solution_with_delist(int n, int m)
 
         *(arr + i) = m;
     }
-    return arr;
+    free(l);
 }
 
-int *solution_with_sequence(int n, int m)
+void solution_with_sequence(int n, int m , int *arr)
 {
-    int *arr = (int *)malloc(n * sizeof(int));
     int *circle = (int *)malloc(n * sizeof(int));
     int i, pos = 0;
     for (i = 0; i < n; i++)
@@ -123,6 +152,7 @@ int *solution_with_sequence(int n, int m)
     for (i = 0; i < n; i++)
     {
         pos = (pos + m - 1) % remaining;
+        if(pos < 0) pos += remaining;
         arr[i] = circle[pos];
         m = arr[i];
         for (int j = pos; j < remaining - 1; j++)
@@ -131,14 +161,11 @@ int *solution_with_sequence(int n, int m)
         }
         remaining--;
     }
-
     free(circle);
-    return arr;
 }
 
-int *solution_with_DEsequence(int n, int m)
+void solution_with_DEsequence(int n, int m , int *arr)
 {
-    int *arr = (int *)malloc(n * sizeof(int));
     int *circle = (int *)malloc(n * sizeof(int));
     int first = 0 , last = n - 1;
     int i, pos = 0;
@@ -146,6 +173,7 @@ int *solution_with_DEsequence(int n, int m)
     {
         circle[i] = i + 1;
     }
+    if( m <= 0 ) m += n;
     for (i = 0; i < n; i++)
     {
         pos = (pos - first + m - 1) % (last - first + 1) + first;
@@ -168,5 +196,5 @@ int *solution_with_DEsequence(int n, int m)
             first++;
         }
     }
-    return arr;
+    free(circle);
 }
