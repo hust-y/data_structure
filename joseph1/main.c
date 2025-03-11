@@ -3,10 +3,11 @@
 #include <time.h>
 #include "func.h"
 
-#define N 300
+#define N 500
 #define M 500000
 #define T 10000
 
+int circle[N];
 void solution_with_list(int n, int m , int *arr);
 
 void solution_with_delist(int n, int m , int *arr);
@@ -87,7 +88,7 @@ int main()
     }
     end = clock();
     printf("Time taken by solution_with_DEsequence() is %f seconds\n", (end - begin) / CLOCKS_PER_SEC);
-    
+
     free(ans1);
     free(ans2);
     free(ans3);
@@ -141,7 +142,6 @@ void solution_with_delist(int n, int m , int *arr)
 
 void solution_with_sequence(int n, int m , int *arr)
 {
-    int *circle = (int *)malloc(n * sizeof(int));
     int i, pos = 0;
     for (i = 0; i < n; i++)
     {
@@ -161,12 +161,10 @@ void solution_with_sequence(int n, int m , int *arr)
         }
         remaining--;
     }
-    free(circle);
 }
 
 void solution_with_DEsequence(int n, int m , int *arr)
 {
-    int *circle = (int *)malloc(n * sizeof(int));
     int first = 0 , last = n - 1;
     int i, pos = 0;
     for (i = 0; i < n; i++)
@@ -196,5 +194,4 @@ void solution_with_DEsequence(int n, int m , int *arr)
             first++;
         }
     }
-    free(circle);
 }
