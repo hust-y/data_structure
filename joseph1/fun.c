@@ -33,7 +33,7 @@ int deleteList(LIST *l, int index)
 {
     if (index < 0 || index >= l->element)
     {
-        printf("Invalid index\n");
+        printf("Invalid index:%d\n" , index);
         return -1;
     }
     LIST *temp = l;
