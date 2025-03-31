@@ -11,22 +11,27 @@ void dfs(int pos , int id , int n , stack *s)
     if(pos == n+1)
     {
         work2_print_ans(n);
+        print_operation(2 * n);
         return;
     }
     if(s->top)
     {
         int x = top(s);
         pop(s);
+        add_op(1,x);
         ans[pos] = x;
         dfs(pos+1 , id , n , s);
         push(s, x);
+        delete_op();
     }
     if(id <= n )
     {
         push(s , id);
+        add_op(0,id);
         ans[pos] = id;
         dfs(pos , id+1 , n , s);
         pop(s);
+        delete_op();
     }
     
 }

@@ -2,11 +2,15 @@
 #define FUNC_H
 
 typedef struct Node {
-    char op[20];
+    int op;
     int id;
 }node;
 
 void print_operation(int n);
+
+void add_op(int op , int id);
+
+void delete_op();
 
 typedef struct Stack {
     int top;

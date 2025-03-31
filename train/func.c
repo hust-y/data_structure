@@ -3,12 +3,25 @@
 #include <stdlib.h>
 
 node operations[100];
+int op_count = 0;
+const char *op_expr[2] = {"Enter" , "Exit"};
+
+void add_op(int op , int id)
+{
+    operations[++op_count].id = id;
+    operations[op_count].op = op;
+}
+
+void delete_op()
+{
+    op_count--;
+}
 
 void print_operation(int n)
 {
     for( int i = 1 ; i <= n ; i++ )
     {
-        printf("%s %d\n", operations[i].op, operations[i].id);
+        printf("%s %d\n", op_expr[operations[i].op], operations[i].id);
     }
     return;
 }
@@ -76,5 +89,4 @@ void printans(destack* d)
     {
         printf("%d ", d->elements[i]);
     }
-
 }
