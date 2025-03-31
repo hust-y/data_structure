@@ -32,7 +32,7 @@ typedef struct Destack {
 }destack;
 //left is zhan, right is ans and the direction is from right to left
 
-void create_destack(destack* d);
+void create_destack(destack* d , int n);
 
 void pushleft(destack* d, int value);
 
@@ -40,6 +40,6 @@ void pushright(destack* d, int value);
 
 int topleft(destack* d);
 
-int printans(destack* d);
+void printans(destack* d);
 
 #endif

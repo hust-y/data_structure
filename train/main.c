@@ -4,5 +4,4 @@
 int main()
 {
     int n;
-    
 }
