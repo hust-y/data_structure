@@ -52,12 +52,13 @@ void pop(stack* s)
     s->top--;
 }
 
-void create_destack(destack* d , int n)
+void create_destack(destack** d , int n)
 {
-    d = (destack*)malloc(sizeof(destack));
-    d->top1 = 0;
-    d->top2 = n + 1;
-    d->n = n;
+    destack* t = (destack*)malloc(sizeof(destack));
+    t->top1 = 0;
+    t->top2 = n + 1;
+    t->n = n;
+    *d = t;
     return ;
 }
 
@@ -83,10 +84,21 @@ int topleft(destack* d)
     }
 }
 
+void popleft(destack* d)
+{
+    d->top1--;
+}
+
+void popright(destack* d)
+{
+    d->top2++;
+}
+
 void printans(destack* d)
 {
     for( int i = d->n ; i >= 1 ; i-- )
     {
         printf("%d ", d->elements[i]);
     }
+    printf("\n");
 }

@@ -4,7 +4,7 @@
 
 int ans[100];
 
-void dfs(int pos , int id , int n , stack *s)
+void work2_dfs(int pos , int id , int n , stack *s)
 {
     // printf("dfs(%d, %d, %d, %d)\n", pos, id, n, s->top);
     // system("pause");
@@ -20,7 +20,7 @@ void dfs(int pos , int id , int n , stack *s)
         pop(s);
         add_op(1,x);
         ans[pos] = x;
-        dfs(pos+1 , id , n , s);
+        work2_dfs(pos+1 , id , n , s);
         push(s, x);
         delete_op();
     }
@@ -29,7 +29,7 @@ void dfs(int pos , int id , int n , stack *s)
         push(s , id);
         add_op(0,id);
         ans[pos] = id;
-        dfs(pos , id+1 , n , s);
+        work2_dfs(pos , id+1 , n , s);
         pop(s);
         delete_op();
     }
@@ -42,9 +42,9 @@ void work2( int n)
     create_stack(&s);
     // printf("%d" , s->top);
     int id = 1 , pos = 1;
-    printf("begin dfs\n");
-    dfs(pos, id, n, s);
-    printf("end dfs\n");
+    // printf("begin dfs\n");
+    work2_dfs(pos, id, n, s);
+    // printf("end dfs\n");
 }
 
 void work2_print_ans(int n)
