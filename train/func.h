@@ -2,12 +2,9 @@
 #define FUNC_H
 
 typedef struct Node {
-    char operator[20];
+    char op[20];
     int id;
 }node;
-
-node operation[100];
-int ans[100];
 
 void print_operation(int n);
 
@@ -16,7 +13,7 @@ typedef struct Stack {
     int elements[100];
 }stack;
 
-void create_stack(stack* s);
+void create_stack(stack** s);
 
 void push(stack* s, int value);
 

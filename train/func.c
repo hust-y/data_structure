@@ -2,19 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+node operations[100];
+
 void print_operation(int n)
 {
     for( int i = 1 ; i <= n ; i++ )
     {
-        printf("%s %d\n", operation[i].operator, operation[i].id);
+        printf("%s %d\n", operations[i].op, operations[i].id);
     }
     return;
 }
 
-void create_stack(stack* s)
+void create_stack(stack** s)
 {
-    s = (stack*)malloc(sizeof(stack));
-    s->top = 0;
+    stack* t = (stack*)malloc(sizeof(stack));
+    t->top = 0;
+    *s = t;
 }
 
 void push(stack* s, int value)

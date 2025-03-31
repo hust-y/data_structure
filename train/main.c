@@ -1,7 +1,9 @@
 #include <stdio.h>
-#include "func.h"
+#include "work.h"
 
 int main()
 {
-    int n;
+    int n = 4;
+    work2(n);
+    return 0;
 }
