@@ -47,4 +47,6 @@ void popright(destack* d);
 
 void printans(destack* d);
 
+
+void copy_add_array(int *a, int *b, int n, int m);
 #endif

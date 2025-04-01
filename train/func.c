@@ -102,3 +102,13 @@ void printans(destack* d)
     }
     printf("\n");
 }
+
+//My array functions
+void copy_add_array(int *a, int *b, int n, int m)
+{
+    for(int i = 0 ; i < n ; i++ )
+    {
+        a[i] = b[i] + m;
+    }
+    return;
+}
