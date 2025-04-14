@@ -1,12 +1,13 @@
 #ifndef FUNC_H
 #define FUNC_H
 
-
+#include<stdlib.h>
+#include<stdio.h>
 
 typedef struct Node {
     char name;//0 for not leaf node
-    struct node *left;
-    struct node *right;
+    struct Node *left;
+    struct Node *right;
 }node;
 typedef struct Listelement{
     int value;
@@ -18,7 +19,7 @@ typedef struct List{
     struct List *next;
 }list;
 
-void ini(node *root , char *dictionary);
+void ini(node **root , char *dictionary);
 // to generate the dictionary
 
 void enc(const char *filename1, char *filename2 , char *dictionary);
@@ -33,4 +34,4 @@ void pri(const char *filename);
 void print_tree(node *root);
 //print the tree;
 
-#endif FUNC_H
+#endif 
