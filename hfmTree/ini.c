@@ -82,5 +82,7 @@ void ini(node **root , char *dictionary)
     }
 
     freopen(dictionary , "w" , stdout);
+    printf("%d\n" , n);
     translate_tree_to_code(*root , 0);
+    fclose(stdout);
 }
