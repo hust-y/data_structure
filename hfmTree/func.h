@@ -5,8 +5,8 @@
 
 typedef struct Node {
     char name;//0 for not leaf node
-    struct node *left;
-    struct node *right;
+    struct Node *left;
+    struct Node *right;
 }node;
 typedef struct Listelement{
     int value;
@@ -18,7 +18,7 @@ typedef struct List{
     struct List *next;
 }list;
 
-void ini(node *root , char *dictionary);
+void ini(node **root , char *dictionary);
 // to generate the dictionary
 
 void enc(const char *filename1, char *filename2 , char *dictionary);
@@ -30,7 +30,7 @@ void dec(const char *filename1, char *filename2 , char *dictionary);
 void pri(const char *filename);
 //print the dictionary;
 
-void print_tree(node *root);
+void print_tree(node *root, int n);
 //print the tree;
 
 #endif FUNC_H
