@@ -1,7 +1,8 @@
 #ifndef FUNC_H
 #define FUNC_H
 
-
+#include<stdlib.h>
+#include<stdio.h>
 
 typedef struct Node {
     char name;//0 for not leaf node
@@ -33,4 +34,4 @@ void pri(const char *filename);
 void print_tree(node *root, int n);
 //print the tree;
 
-#endif FUNC_H
+#endif 
