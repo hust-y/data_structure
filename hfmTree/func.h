@@ -31,7 +31,7 @@ void dec(const char *filename1, char *filename2 , char *dictionary);
 void pri(const char *filename);
 //print the dictionary;
 
-void print_tree(node *root, int n);
+void print_tree(node *root);
 //print the tree;
 
 #endif 
